@@ -107,5 +107,5 @@ INSERT INTO PurchaseOrderDetails
 )
 VALUES 
 (1, 1, 10),
-(2,	2, 9);
+(2, 2, 9);
 GO
