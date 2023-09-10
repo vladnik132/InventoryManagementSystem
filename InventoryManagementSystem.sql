@@ -119,10 +119,10 @@ GO
 CREATE PROCEDURE GetSalesByThreshold
 	@ItemName NVARCHAR(255),
 	@Threshold INT,
-	@AboveEqualOrBelow NVARCHAR(10)
+	@AboveOrBelow NVARCHAR(10)
 AS
 BEGIN
-	IF @AboveEqualOrBelow = 'Above'
+	IF @AboveOrBelow = 'Above'
 	BEGIN
 		SELECT i.ItemName, pod.Quantity 
 		FROM InventoryItems AS i
@@ -130,7 +130,7 @@ BEGIN
 		WHERE i.ItemName = @ItemName
 			AND pod.Quantity > @Threshold;
 	END
-	ELSE IF @AboveEqualOrBelow = 'Below'
+	ELSE IF @AboveOrBelow = 'Below'
 	BEGIN
 		SELECT i.ItemName, pod.Quantity
 		FROM InventoryItems AS i
@@ -144,5 +144,5 @@ GO
 EXEC GetSalesByThreshold 
 	@ItemName = 'Laptop',
 	@Threshold = 20,
-	@AboveEqualOrBelow = 'Above';
+	@AboveOrBelow = 'Above';
 GO
