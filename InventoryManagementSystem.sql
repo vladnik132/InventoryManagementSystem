@@ -27,7 +27,6 @@ CREATE TABLE InventoryItems
 );
 GO
 
-
 -- Create PurchaseOrders table
 CREATE TABLE PurchaseOrders 
 (
@@ -76,12 +75,12 @@ INSERT INTO InventoryItems
 	SupplierID
 )
 VALUES 
-	('Laptop', 'High-performance laptop', 1099.99, 50, 1),
-	('Smartphone', 'Low-performance smartphone', 322.99, 37, 2),
-	('Camera', 'High-performance camera', 569.99, 45, 3),
-	('Laptop', 'Low-performance laptop', 454.99, 35, 1),
-	('Smartphone', 'High-performance smartphone', 749.99, 27, 2),
-	('Camera', 'Low-performance camera', 299.99, 58, 3);
+	('Laptop', 'High-performance', 1099.99, 50, 1),
+	('Smartphone', 'Low-performance', 322.99, 37, 2),
+	('Camera', 'High-performance', 569.99, 45, 3),
+	('Laptop', 'Low-performance', 454.99, 35, 1),
+	('Smartphone', 'High-performance', 749.99, 27, 2),
+	('Camera', 'Low-performance', 299.99, 58, 3);
 GO
 
 -- Insert sample data into PurchaseOrders table
@@ -108,14 +107,14 @@ INSERT INTO PurchaseOrderDetails
 )
 VALUES 
 	(1, 1, 20),
-	(1, 1, 90),
-	(1, 1, 40),
-	(1, 1, 50),
-	(1, 1, 60),
-	(1, 1, 10);
+	(1, 2, 90),
+	(2, 1, 40),
+	(2, 4, 50),
+	(2, 5, 60),
+	(3, 6, 10);
 GO
 
--- This stored procedure shows a product above, equal or below chosen sales threshold 
+-- This stored procedure shows a product above or below chosen sales threshold 
 CREATE PROCEDURE GetSalesByThreshold
 	@ItemName NVARCHAR(255),
 	@Threshold INT,
@@ -140,7 +139,8 @@ BEGIN
 	END
 END;
 GO
- 
+
+-- Execute GetSalesByThreshold procedure 
 EXEC GetSalesByThreshold 
 	@ItemName = 'Laptop',
 	@Threshold = 20,
